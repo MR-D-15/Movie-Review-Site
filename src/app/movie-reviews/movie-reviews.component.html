@@ -1,0 +1,35 @@
+<h3 class="text-center m-5" *ngIf="movieReviews.length == 0">Reloading...</h3>
+<div class="movie-container" *ngIf="movieReviews.length !==0">
+    <div class="container mt-4 border rounded p-3">
+        <div class="d-flex flex-direction-row justify-content-between">
+            <h2>Movie Review List</h2>
+            <button class="btn btn-primary">Create</button>
+        </div>
+        <table class="table table-striped text-center">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Code</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Language</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let movieReview of movieReviews; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ movieReview.name }}</td>
+            <td>{{ movieReview.code }}</td>
+            <td>{{ movieReview.duration }}</td>
+            <td>{{ movieReview.language }}</td>
+            <td>{{ movieReview.rating }}</td>
+            <td>
+                <button class="btn btn-danger mx-1">Delete</button>
+            </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>

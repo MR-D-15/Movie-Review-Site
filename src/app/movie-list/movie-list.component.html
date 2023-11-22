@@ -1,0 +1,51 @@
+<h3 class="text-center m-5" *ngIf="movies.length == 0">Reloading...</h3>
+<div class="movie-container" *ngIf="movies.length !==0">
+    <div class="container mt-4 border rounded p-3">
+        <div class="d-flex flex-direction-row justify-content-between">
+            <h2>Movie List</h2>
+            <button class="btn btn-primary" (click)="overlayPanel()">Create</button>
+        </div>
+        <table class="table table-striped text-center">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Code</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let movie of movies; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ movie.name }}</td>
+            <td>{{ movie.code }}</td>
+            <td>
+                <button class="btn btn-danger mx-1" (click)="deleteMovie(movie.code)">Delete</button>
+            </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="overlay" *ngIf="showCreateOverlay">
+    <div class="overlay-content">
+      <h3>Add Movie</h3>
+      <!-- Your form content goes here -->
+      <form [formGroup]="form">
+        <div class="form-group">
+            <label for="name">Movie Name</label>
+            <input type="text" class="form-control" formControlName="name">
+          </div>
+    
+          <div class="form-group">
+            <label for="code">Code</label>
+            <input type="text" class="form-control" formControlName="code">
+          </div>
+          <div class="text-center">
+            <button class="btn btn-danger m-2" (click)="overlayPanel()">Cancel</button>
+            <button class="btn btn-primary m-2" (click)="createMovie()" [disabled]="form.invalid">Create</button>
+          </div>
+      </form>
+    </div>
+  </div>
